@@ -126,7 +126,7 @@ def generate_response(query_text, vectorstore, callback):
     print(docs)
         
     # generator
-    llm = ChatOpenAI(model_name="gpt-4", temperature=0, streaming=True, callbacks=[callback])
+    llm = ChatOpenAI(model_name="gpt-4o", temperature=0, streaming=True, callbacks=[callback])
     
     # chaining
     rag_prompt = [
