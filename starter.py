@@ -211,7 +211,8 @@ def apply_custom_css():
 apply_custom_css()
 
 # 보노보노 그림 추가
-st.image('D:\Users\mkw81\Desktop\4.jpeg', caption='Bonobono', width=200)
+st.image('D:/Users/mkw81/Desktop/4.jpeg', caption='Bonobono', width=200)
+
 
 # enter token
 import os
