@@ -10,7 +10,7 @@ from langchain.schema import ChatMessage
 
 from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 # handle streaming conversation
 class StreamHandler(BaseCallbackHandler):
