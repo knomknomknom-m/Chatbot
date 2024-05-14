@@ -167,6 +167,7 @@ def generate_summarize(raw_text, callback):
 st.set_page_config(page_title='📝논문을 쉽게 알려주는 선생님📑')
 st.title('📝논문을 쉽게 알려주는 선생님📑')
 
+# 사용자 정의 CSS 적용
 def apply_custom_css():
     custom_css = """
     <style>
@@ -208,6 +209,9 @@ def apply_custom_css():
     st.markdown(custom_css, unsafe_allow_html=True)
 
 apply_custom_css()
+
+# 보노보노 그림 추가
+st.image('D:\Users\mkw81\Desktop\4.jpeg', caption='Bonobono', width=200)
 
 # enter token
 import os
