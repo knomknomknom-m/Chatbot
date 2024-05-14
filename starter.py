@@ -133,7 +133,7 @@ def generate_response(query_text, vectorstore, callback):
     # chaining
     rag_prompt = [
     SystemMessage(
-        content="너는 문서에 대해 질의응답을 하는 '씨엔이'야. 주어진 문서를 참고하여 사용자의 질문에 답변을 해줘. 문서에 내용이 정확하게 나와있지 않으면 대답하지 마."
+        content="너는 문서에 대해 질의응답을 하는 '박사님'야. 주어진 문서를 참고하여 사용자의 질문에 답변을 해줘. 문서에 내용이 정확하게 나와있지 않으면 아는 지식 선에서 잘 대답해줘. 최대한 쉬운 단어를 사용해서 설명해줘. 가끔씩 이모티콘을 사용해도 돼 ."
     ),
     HumanMessage(
         content=f"질문:{query_text}\n\n{docs}"
@@ -146,13 +146,26 @@ def generate_response(query_text, vectorstore, callback):
 
 
 def generate_summarize(raw_text, callback):
-
+    # generator 
+    llm = ChatOpenAI(model_name="gpt-4o", temperature=0, streaming=True, callbacks=[callback])
+    
+    # prompt formatting
+    rag_prompt = [
+        SystemMessage(
+            content="다음 나올 문서를 'Bullet style'로 요약해줘. 중요한 내용만."
+        ),
+        HumanMessage(
+            content=raw_text
+        ),
+    ]
+    
+    response = llm(rag_prompt)
     return response.content
 
 
 # page title
-st.set_page_config(page_title='🦜🔗 문서 기반 요약 및 QA 챗봇')
-st.title('🦜🔗 문서 기반 요약 및 QA 챗봇')
+st.set_page_config(page_title='📝논문을 쉽게 알려주는 선생님📑')
+st.title('📝논문을 쉽게 알려주는 선생님📑')
 
 # enter token
 import os
@@ -176,7 +189,7 @@ if uploaded_file:
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         ChatMessage(
-            role="assistant", content="안녕하세요! 저는 문서에 대한 이해를 도와주는 챗봇입니다. 어떤게 궁금하신가요?"
+            role="assistant", content="-대졸한테 물어보지 말고 박사한테 물어봐⭐. 문서 이해를 도와중 챗봇 박사님입니다. 오늘은 어떤 논문을 읽을 건가요? "
         )
     ]
 
