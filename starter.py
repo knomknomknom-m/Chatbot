@@ -211,7 +211,7 @@ def apply_custom_css():
 apply_custom_css()
 
 # 보노보노 그림 추가
-st.image('D:/Users/mkw81/Desktop/4.jpeg', width='')
+st.image('D:/Users/mkw81/Desktop/4.jpeg', width='300')
 
 
 # enter token
