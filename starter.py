@@ -140,7 +140,7 @@ def generate_response(query_text, vectorstore, callback):
     ),
     ]
 
-response = llm(rag_prompt)
+    response = llm(rag_prompt)
 
     return response.content
 
