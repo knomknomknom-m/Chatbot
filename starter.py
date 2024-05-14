@@ -103,8 +103,8 @@ def process_uploaded_file(uploaded_file):  #
         # splitter
         text_splitter = CharacterTextSplitter(
             separator = "\n\n",
-            chunk_size = 1000,
-            chunk_overlap  = 200,
+            chunk_size = 1500,
+            chunk_overlap  = 300,
             length_function = len,
             is_separator_regex = False,
         )
@@ -133,7 +133,7 @@ def generate_response(query_text, vectorstore, callback):
     # chaining
     rag_prompt = [
     SystemMessage(
-        content="너는 문서에 대해 질의응답을 하는 '박사님'야. 주어진 문서를 참고하여 사용자의 질문에 답변을 해줘. 문서에 내용이 정확하게 나와있지 않으면 아는 지식 선에서 잘 대답해줘. 최대한 쉬운 단어를 사용해서 설명해줘. 가끔씩 이모티콘을 사용해도 돼 ."
+        content="너는 문서에 대해 질의응답을 하는 '박사님'야. 주어진 문서를 참고하여 사용자의 질문에 답변을 해줘. 문서에 내용이 정확하게 나와있지 않으면 아는 지식 선에서 잘 대답해줘. 최대한 쉬운 단어를 사용해서 설명해줘. 가끔씩 이모티콘을 사용해도 돼. 답변이 어려운게 있을 때는 단계별로 알려줘. 잘 대답하면 팁으로 200달러를 줄게"
     ),
     HumanMessage(
         content=f"질문:{query_text}\n\n{docs}"
@@ -166,6 +166,48 @@ def generate_summarize(raw_text, callback):
 # page title
 st.set_page_config(page_title='📝논문을 쉽게 알려주는 선생님📑')
 st.title('📝논문을 쉽게 알려주는 선생님📑')
+
+def apply_custom_css():
+    custom_css = """
+    <style>
+        body {
+            background-color: #B3E0F2;  /* 보노보노의 파스텔 블루 색상 */
+            color: #000000;
+        }
+        .stApp {
+            background-color: #B3E0F2;  /* 보노보노의 파스텔 블루 색상 */
+        }
+        .stButton>button {
+            background-color: #72C6E1;  /* 버튼 색상 */
+            color: #FFFFFF;
+            border-radius: 10px;
+            border: none;
+        }
+        .stTextInput>div>div>input {
+            background-color: #E6F7FF;  /* 입력창 배경 색상 */
+            color: #000000;
+            border-radius: 10px;
+            border: 1px solid #72C6E1;
+        }
+        .stMarkdown {
+            color: #333333;
+        }
+        .css-1aumxhk {
+            background-color: #72C6E1;  /* 채팅 메시지 배경 색상 */
+        }
+        .css-1d391kg p {
+            color: #000000;
+        }
+        .css-1d391kg {
+            background-color: #E6F7FF;  /* 채팅 메시지 입력 배경 색상 */
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+    """
+    st.markdown(custom_css, unsafe_allow_html=True)
+
+apply_custom_css()
 
 # enter token
 import os
