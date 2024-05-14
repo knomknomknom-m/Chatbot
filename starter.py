@@ -189,7 +189,7 @@ if uploaded_file:
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         ChatMessage(
-            role="assistant", content="-대졸한테 물어보지 말고 박사한테 물어봐⭐. 문서 이해를 도와중 챗봇 박사님입니다. 오늘은 어떤 논문을 읽을 건가요? "
+            role="assistant", content="대졸한테 물어보지 말고 박사한테 물어봐⭐. 문서 이해를 도와중 챗봇 박사님입니다. 오늘은 어떤 논문을 읽을 건가요? "
         )
     ]
 
